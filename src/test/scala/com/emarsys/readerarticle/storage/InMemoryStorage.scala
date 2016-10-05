@@ -1,4 +1,4 @@
-package com.emarsys.readerarticle
+package com.emarsys.readerarticle.storage
 
 import akka.actor.ActorSystem
 import scala.collection.mutable

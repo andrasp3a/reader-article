@@ -1,8 +1,8 @@
-package com.emarsys.readerarticle
+package com.emarsys.readerarticle.storage
 
-import redis.RedisClient
-import Config.redisConfig
 import akka.actor.ActorSystem
+import com.emarsys.readerarticle.Config.redisConfig
+import redis.RedisClient
 
 import scala.concurrent.Future
 

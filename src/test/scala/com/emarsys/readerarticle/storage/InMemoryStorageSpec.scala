@@ -1,9 +1,8 @@
-package com.emarsys.readerarticle
+package com.emarsys.readerarticle.storage
 
-import org.scalatest.{Matchers, WordSpec}
-import org.scalatest.concurrent.ScalaFutures
+import com.emarsys.readerarticle.BaseSpec
 
-class InMemoryStorageSpec extends WordSpec with Matchers with ScalaFutures {
+class InMemoryStorageSpec extends BaseSpec {
 
   "InMemoryStorage" should {
 
