@@ -2,9 +2,8 @@ package com.emarsys.readerarticle
 
 import akka.actor.ActorSystem
 import com.emarsys.readerarticle.model.{Item, TagCopyConfiguration}
-import com.emarsys.readerarticle.service.{TagService, TagServiceCurry}
+import com.emarsys.readerarticle.service.TagService
 import com.emarsys.readerarticle.storage.Storage
-
 import scala.concurrent.ExecutionContext.Implicits.global
 
 object Main extends App {
@@ -22,7 +21,5 @@ object Main extends App {
   } yield tagsOfChainsaw.mkString("\n")
 
   tags.foreach(println)
-
-  TagServiceCurry.findTagsOfItem("hammer").apply(storage).foreach(println)
 
 }
