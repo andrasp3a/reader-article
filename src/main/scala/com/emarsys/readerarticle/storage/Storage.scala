@@ -17,3 +17,9 @@ trait Storage {
   def get(key: String): Future[Option[String]] = client.get[String](key)
 
 }
+
+object Storage {
+  def apply(actorSystem: ActorSystem) = new Storage {
+    override implicit val system: ActorSystem = actorSystem
+  }
+}
