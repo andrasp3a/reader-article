@@ -17,7 +17,7 @@ object TagServiceBlocking {
 
   def findTagsOfItem(itemName: String, storage: BlockingStorage): List[String] = {
     val maybeContent = storage.get(itemName)
-    maybeContent.fold(List.empty[String])(_.split(",").map(_.trim).toList)
+    maybeContent.fold(List.empty[String])(createList)
   }
 
   def addTagsToItem(item: Item, storage: BlockingStorage): Boolean = {

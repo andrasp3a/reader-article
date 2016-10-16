@@ -22,7 +22,7 @@ object TagService {
   def findTagsOfItem(itemName: String, storage: Storage): Future[List[String]] = {
     for {
       maybeContent <- storage.get(itemName)
-    } yield maybeContent.fold(List.empty[String])(_.split(",").map(_.trim).toList)
+    } yield maybeContent.fold(List.empty[String])(createList)
   }
 
   def addTagsToItem(item: Item, storage: Storage): Future[Boolean] = {

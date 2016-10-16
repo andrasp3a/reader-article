@@ -1,6 +1,6 @@
 package com.emarsys.readerarticle.service
 
-import cats.data.{Kleisli, ReaderT}
+import cats.data.ReaderT
 import cats.implicits._
 import com.emarsys.readerarticle.model._
 import com.emarsys.readerarticle.storage.Storage
@@ -23,13 +23,13 @@ object TagServiceReader {
     tags.filter(tagName => prefix.fold(true)(prefix => tagName.startsWith(prefix)))
   }
 
-  def findTagsOfItem(itemName: String): DB[List[String]] = Kleisli { storage =>
+  def findTagsOfItem(itemName: String): DB[List[String]] = withStorage { storage =>
     for {
       maybeContent <- storage.get(itemName)
-    } yield maybeContent.fold(List.empty[String])(_.split(",").map(_.trim).toList)
+    } yield maybeContent.fold(List.empty[String])(createList)
   }
 
-  def addTagsToItem(item: Item): DB[Boolean] = Kleisli { storage =>
+  def addTagsToItem(item: Item): DB[Boolean] = withStorage { storage =>
     for {
       maybeContent <- storage.get(item.name)
       givenTags = item.tags.mkString(",")

@@ -9,7 +9,7 @@ object TagServiceCurry {
   def findTagsOfItem(itemName: String): Storage => Future[List[String]] = storage => {
     for {
       maybeContent <- storage.get(itemName)
-    } yield maybeContent.fold(List.empty[String])(_.split(",").map(_.trim).toList)
+    } yield maybeContent.fold(List.empty[String])(createList)
   }
 
 }
