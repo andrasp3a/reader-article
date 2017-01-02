@@ -13,8 +13,8 @@ object TagTransformation {
   }
 
   def mergeTags(maybeContent: Option[String], tagList: List[String]) = {
-    val givenTags = tagList.mkString(",")
-    maybeContent.fold(givenTags)(_ + "," + givenTags)
+    val tagSet = tagList.toSet
+    maybeContent.fold(tagSet)(_.split(",").toSet.union(tagSet)).mkString(",")
   }
 
 }
