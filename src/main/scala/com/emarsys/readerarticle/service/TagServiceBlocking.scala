@@ -6,48 +6,16 @@ import TagTransformation._
 
 object TagServiceBlocking {
 
-
-
-
-
-
-
-
-
   def copyTagsWithPrefix(copyConfig: TagCopyConfiguration, storage: BlockingStorage): Boolean = {
     val sourceTags = findTagsOfItem(copyConfig.sourceItem, storage)
     val itemWithTagsToAdd = Item(copyConfig.targetItem, filterByPrefix(sourceTags, copyConfig.prefix))
     addTagsToItem(itemWithTagsToAdd, storage)
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
   def findTagsOfItem(itemName: String, storage: BlockingStorage): List[String] = {
     val maybeContent = storage.get(itemName)
     createTagList(maybeContent)
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
   def addTagsToItem(item: Item, storage: BlockingStorage): Boolean = {
     val maybeContent = storage.get(item.name)
